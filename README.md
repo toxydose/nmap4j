@@ -45,8 +45,6 @@ Start Neo4j and note the connection details in config file (URI, username, passw
 
 ### 3) Ingest with nmap4j
 
-Use the nmap4j command or script (adjust to your project’s entrypoint):
-
 ```bash
 python ingest.py scan.xml
 ```
