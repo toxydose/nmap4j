@@ -1,6 +1,6 @@
 # nmap4j
 
-nmap4j is a lightweight ingestor that parses Nmap XML scan output and loads host, port, service, and script results into Neo4j as a graph database.
+nmap4j is a lightweight vibe-coded ingestor that parses Nmap XML scan output and loads host, port, service, and script results into Neo4j as a graph database.
 
 ## 🚀 What it does
 
@@ -15,6 +15,11 @@ nmap4j is a lightweight ingestor that parses Nmap XML scan output and loads host
 - Makes Nmap results queryable with Cypher
 - Enables attack surface analysis, network mapping, and alerting in Neo4j
 - Keeps topology and service relationships in a graph model
+
+## To-Do features
+- Implement parsing of nmap NSE results
+- Own client module with web dashboard
+- Ai-powered query building (local LLM)
 
 ## 🧭 Quick Start
 
@@ -47,8 +52,3 @@ If you were scanning networks with different masks you can specify the target ne
 ```bash
 python ingest.py scan.xml target_networks.txt
 ```
-
-## 📄 License
-
-This project is open source. Add your license details here.
-# nmap4j
