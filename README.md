@@ -8,6 +8,9 @@ nmap4j is a lightweight vibe-coded ingestor that parses Nmap XML scan output and
 - Parses targets, host addresses, ports, services.
 - Stores each entity (hosts, ports, services, scripts) as nodes
 - Connects nodes with relationships (e.g., `(:Host)-[:HAS_PORT]->(:Port)`)
+- You can use default neo4j browser to see the results of different queries (http://localhost:7474/browser/)
+
+
 
 ## ✅ Why use nmap4j
 
