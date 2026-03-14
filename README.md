@@ -8,7 +8,6 @@ nmap4j is a lightweight vibe-coded ingestor that parses Nmap XML scan output and
 - Parses targets, host addresses, ports, services.
 - Stores each entity (hosts, ports, services, scripts) as nodes
 - Connects nodes with relationships (e.g., `(:Host)-[:HAS_PORT]->(:Port)`)
-- Supports bulk ingestion for large scan files
 
 ## ✅ Why use nmap4j
 
@@ -17,6 +16,8 @@ nmap4j is a lightweight vibe-coded ingestor that parses Nmap XML scan output and
 - Keeps topology and service relationships in a graph model
 
 ## To-Do features
+
+- Bulk ingestion support
 - Implement parsing of nmap NSE results
 - Own client module with web dashboard
 - Ai-powered query building (local LLM)
