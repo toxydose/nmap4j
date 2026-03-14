@@ -1,0 +1,52 @@
+//3 most spreaded ports
+MATCH (ip:IPAddress)-[:HAS_PORT]->(p:Port)
+WITH p.port AS port, p.protocol AS proto, count(DISTINCT ip) AS hostCount
+ORDER BY hostCount DESC
+LIMIT 3
+RETURN port, proto, hostCount
+
+
+//ALL Network related hosts with any open ports
+MATCH (n:Network {cidr:'10.10.10.0/24'})-[:CONTAINS]->(ip:IPAddress)-[:HAS_PORT]->(p:Port)
+RETURN n, ip
+
+
+//Find a network
+MATCH (n:Network {cidr:'10.10.10.0/24'}) RETURN n 
+
+//Network->hosts with 22 port open
+MATCH (n:Network)-[:CONTAINS]->(ip:IPAddress)-[:HAS_PORT]->(p:Port {port: 22})
+RETURN n, ip, p
+
+//Services count in scan
+MATCH (s:Service)-[:FOUND_IN_SCAN]->(scan:Scan)
+RETURN scan.date, count(*) 
+ORDER BY scan.date
+
+//Top ports graph
+MATCH (ip:IPAddress)-[:HAS_PORT]->(p:Port)
+WITH p.port AS port, count(DISTINCT ip) AS hostCount
+ORDER BY hostCount DESC
+LIMIT 3
+
+MATCH (n:Network)-[:CONTAINS]->(ip:IPAddress)-[r:HAS_PORT]->(p:Port)
+WHERE p.port = port
+
+RETURN n, ip, p, r
+
+
+//Top Ports Table
+MATCH (ip:IPAddress)-[:HAS_PORT]->(p:Port)
+WITH p.port AS port, p.protocol AS proto, count(DISTINCT ip) AS hostCount
+ORDER BY hostCount DESC
+LIMIT 3
+
+MATCH (n:Network)-[:CONTAINS]->(ip:IPAddress)-[:HAS_PORT]->(p:Port)
+WHERE p.port = port AND p.protocol = proto
+
+RETURN 
+    n.cidr        AS subnet,
+    ip.address    AS ip,
+    p.port        AS port,
+    p.protocol    AS protocol
+ORDER BY subnet, ip, port
